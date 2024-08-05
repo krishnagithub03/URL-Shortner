@@ -22,7 +22,16 @@ const handleUrlAnalytics = async (req,res) =>{
 
     return res.status(200).json({TotalClicks : entry.visitHistory.length, Analytics : entry.visitHistory});
 }
+const handleDeleteUrl = async(req,res) =>{
+    const shortId = req.params.id;
+    const entry = await URL.findOne({shortId});
+    if(!entry) return res.status(404).json({error : "URL not found"});
+
+    await URL.deleteOne({shortId});
+    return res.render("home");
+}
 module.exports = {
     handleCreateURL, 
-    handleUrlAnalytics
+    handleUrlAnalytics,
+    handleDeleteUrl,
 }

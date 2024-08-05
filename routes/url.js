@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { handleCreateURL, handleUrlAnalytics }  = require('../controllers/url')
+const { handleCreateURL, handleUrlAnalytics, handleDeleteUrl }  = require('../controllers/url')
 
 router.route('/').post(handleCreateURL);
+
+router.route("/:id").delete(handleDeleteUrl);
+
 
 
 // router.route('/:id').get()

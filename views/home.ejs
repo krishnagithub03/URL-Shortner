@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL Shortner</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -90,6 +94,14 @@
         padding: 15px;
         text-align: left;
         color: #d4d4d4;
+      }
+      .icon {
+        color: #d4d4d4;
+        cursor: pointer;
+      }
+
+      .icon:hover {
+        color: #ff0000;
       }
 
       th {
@@ -190,6 +202,15 @@
             <td><%= url.shortId %></td>
             <td><%= url.originalUrl %></td>
             <td><%= url.visitHistory.length %></td>
+            <td>
+              <i
+                class="fas fa-trash icon"
+                onclick="deleteURL('<%= url.shortId %>')"
+              ></i>
+            </td>
+            <td>
+              <button onclick="copyToClip('<%= url.shortId %>')">Copy</button>
+            </td>
           </tr>
           <% }); %>
         </tbody>
@@ -198,5 +219,33 @@
 
       <table></table>
     </div>
+    <script>
+      function copyToClip(x) {
+        try {
+          navigator.clipboard.writeText("https://krishcodes.tech/u/" + x);
+          alert("Copied the Clipboard");
+        } catch {
+          alert("Invalid Request");
+        }
+      }
+      async function deleteURL(x) {
+        try {
+          const response = await fetch(`/u/${x}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            location.reload();
+            alert("URL deleted successfully.");
+          } else {
+            const result = await response.json();
+            alert(result.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("An error occurred while deleting the URL.");
+        }
+      }
+    </script>
   </body>
 </html>
