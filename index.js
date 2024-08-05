@@ -21,11 +21,11 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views',path.resolve('./views'));
 
-app.use('/url',restrictToLoggedinUserOnly, urlRoute);
+app.use('/u',restrictToLoggedinUserOnly, urlRoute);
 app.use('/user',userRoute);
 app.use('/', checkAuth, staticRouter);
 
-app.get('/url/:shortId',async (req,res) =>{
+app.get('/u/:shortId',async (req,res) =>{
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate(
         {
