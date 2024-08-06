@@ -20,6 +20,7 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        position: relative;
       }
       .logout-button {
         position: absolute;
@@ -218,7 +219,7 @@
           <tr>
             <td><%= index+1 %></td>
             <td><%= url.shortId %></td>
-            <td><%= url.originalUrl %></td>
+            <td><%= truncateUrl(url.originalUrl,50) %></td>
             <td><%= url.visitHistory.length %></td>
             <td>
               <i
@@ -278,6 +279,11 @@
           console.error("Error:", error);
           alert("An error occurred while Logging Out");
         }
+      }
+      function truncateUrl(url, maxLength) {
+        return url.length > maxLength
+          ? url.substring(0, maxLength) + "..."
+          : url;
       }
     </script>
   </body>
