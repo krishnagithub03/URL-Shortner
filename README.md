@@ -41,12 +41,6 @@ Below is a diagram illustrating the data flow in the application:
 4. **Statistics Tracking**:
    - Each time a shortened URL is visited, a record of the visit is stored, allowing users to view the total number of clicks.
 
-### Deployment Architecture
-
-The following diagram shows the deployment architecture of the application:
-
-![Deployment Architecture](path/to/your/deployment-architecture-diagram.png)
-
 ## Tech Stack
 
 - **Frontend**:
