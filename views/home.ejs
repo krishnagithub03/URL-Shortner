@@ -225,7 +225,10 @@
           <tr>
             <td><%= index+1 %></td>
             <td><%= url.shortId %></td>
-            <td class="original-url"><%= truncateUrl(url.originalUrl,50) %></td>
+            <td class="original-url">
+              <%= url.originalUrl.length > 50 ? url.originalUrl.substring(0, 50)
+              + '...' : url.originalUrl %>
+            </td>
             <td><%= url.visitHistory.length %></td>
             <td>
               <i
@@ -285,11 +288,6 @@
           console.error("Error:", error);
           alert("An error occurred while Logging Out");
         }
-      }
-      function truncateUrl(url, maxLength) {
-        return url.length > maxLength
-          ? url.substring(0, maxLength) + "..."
-          : url;
       }
     </script>
   </body>
