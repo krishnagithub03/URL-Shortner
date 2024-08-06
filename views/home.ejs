@@ -119,6 +119,12 @@
       .icon:hover {
         color: #ff0000;
       }
+      .original-url {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px; /* Adjust based on your layout */
+      }
 
       th {
         background-color: #444;
@@ -219,7 +225,7 @@
           <tr>
             <td><%= index+1 %></td>
             <td><%= url.shortId %></td>
-            <td><%= truncateUrl(url.originalUrl,50) %></td>
+            <td class="original-url"><%= truncateUrl(url.originalUrl,50) %></td>
             <td><%= url.visitHistory.length %></td>
             <td>
               <i
