@@ -10,7 +10,6 @@ const urlSchema = new mongoose.Schema({
     originalUrl:{
         type: String,
         required: true,
-        unique:true,
     },
     visitHistory: [{timestamp : {type : Number}}],
     createdBy : {
